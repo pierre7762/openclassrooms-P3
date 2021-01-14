@@ -19,6 +19,7 @@ class Fighter {
     var damage: Int
     var maxDamage: Int
     var isDead = false
+    
 
     
     init(typeName: typeName, name: String, life: Int, lifeMax: Int, weaponPower: weaponPower, dodge: Int, criticalHitPercentage: Int, minDamage: Int, damage: Int, maxDamage: Int){
@@ -45,8 +46,7 @@ class Fighter {
         case TheBoxer, TheThinBlade, TheBully
     }
     
-    func damagePointAttack() -> Int{
-        // We seek the maximum attack with the weapon held
+    func maxAttackPotentielCal() -> Int{
         var maxAttackPotentiel = 0
         switch self.weaponPower {
         case .low:
@@ -56,6 +56,12 @@ class Fighter {
         case .powerfull:
             maxAttackPotentiel = maxDamage
         }
+        return maxAttackPotentiel
+    }
+    
+    func damagePointAttack() -> Int{
+        // We seek the maximum attack with the weapon held
+        let maxAttackPotentiel = maxAttackPotentielCal()
         
         // Calculation of damage points in relation to the attacker's accuracy
         var damagepoints = maxAttackPotentiel
@@ -71,22 +77,22 @@ class Fighter {
     func isItToDodge() -> Bool{
         let randomDodge = Int.random(in: 1..<100)
         if randomDodge > dodge {
-            print("se prend le coup")
             return false
         }
         else {
-            print("esquive")
             return true
         }
         
     }
     
-    func treadWounded(target: Fighter){
+    func heal(target: Fighter){
         let care = Int(Double(target.life) * 0.2)
         if ((target.life + care) <= lifeMax){
-            life += care
+            target.life += care
+            print("\(target.name) recovers \(care) life points ! (\(target.life)/\(target.lifeMax))")
         } else {
             life = lifeMax
+            print("\(target.name) is fully recovered ! (\(target.life)/\(target.lifeMax))")
         }
     }
     
@@ -114,8 +120,7 @@ class Fighter {
                 fighterName = readLine()!
             }
         }
-        
-        
+    
         //creation of the fighter
         var typeOne: Fighter
         switch choiceTypeOne {

@@ -30,6 +30,7 @@ class TheBully: Fighter {
     - damages
      */
     init(name: String, life:Int = 150,lifeMax: Int = 150, dodge:Int = 10) {
+        
         super.init(typeName: .TheBully, name: name, life: life, lifeMax: lifeMax, weaponPower: .normal, dodge: 10, criticalHitPercentage: 20, minDamage: 80, damage: 100, maxDamage: 150 )
         }
         
