@@ -34,6 +34,7 @@ class Fighter {
         self.damage = damage
         self.maxDamage = maxDamage
         
+        
     }
     
     enum weaponPower: String {
