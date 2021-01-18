@@ -15,8 +15,8 @@ class Text {
     }
     
     //To use this function in main.swift Text.getText()["The key to the desired text "]!
-    static func getText() -> [String: String]{
-        return [
+    static func getText(key: String) -> String{
+        let textList = [
             //"Key" : "Value"
             "start": "Hello, start game ! \n",
             "createTeam1": "Create the personnal team of player One : \n",
@@ -27,9 +27,14 @@ class Text {
             "fighterName": "What is the name of this fighter ?",
             "attack/care": "want to attack (tape 1) or heal (tape 2) ?",
             "surpriseChest": "******** A surprise chest appears, it contains a weapon more or less effective than yours and which will replace it!******** \n******** Do you want to try your luck ? ********",
-            "yesNo": "Yes type 1 or No type 2"
+            "yesNo": "Yes type 1 or No type 2",
+            "existingName": "The name already exists, please choose another one"
         
         ]
+        
+        let requestedText = textList[key]!
+        
+        return requestedText
     }
 
 }

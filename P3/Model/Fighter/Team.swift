@@ -19,23 +19,20 @@ class Team{
 
     }
     
-    static func createTeam() -> Team{
-        var list: [Fighter] = []
+    static func createTeam(listFightersTeam: [Fighter]) -> Team{
+       
         //choice the team name
-        print(Text.getText()["teamName"]!)
+        print(Text.getText(key: "teamName"))
         var teamName = readLine()!
         if teamName == ""{
             //while the user don't write a word the question loop
             while teamName == "" {
-                print(Text.getText()["teamName"]!)
+                print(Text.getText(key: "teamName"))
                 teamName = readLine()!
             }
         }
-        for _ in 1 ..< 4 {
-            let fighter = Fighter.createFighterChoice()
-            list.append(fighter)
-        }
-        let team = Team(teamName: teamName, fightersList: list )
+
+        let team = Team(teamName: teamName, fightersList: listFightersTeam )
         
         return team
     }

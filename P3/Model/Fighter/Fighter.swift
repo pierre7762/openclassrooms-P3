@@ -98,30 +98,50 @@ class Fighter {
     }
     
     
-    static func createFighterChoice() -> Fighter{
-        print(Text.getText()["createFighter"]!)
+    static func createFighterChoice(listName: [String]) -> Fighter{
+        
+        //choice the fighter name
+        print(Text.getText(key: "fighterName"))
+        var fighterName = readLine()!
+        
+        // we cheak if the name is good
+        var isOk = false
+        
+        while isOk == false {
+            if fighterName == ""{
+                print("Please write the name you want to give to the fighter")
+                fighterName = readLine()!
+            } else {
+                isOk = true
+            }
+            
+            //check if the name is already in use
+            for n in listName {
+                if n == fighterName {
+                    print("\(Text.getText(key: "existingName"))")
+                    print(Text.getText(key: "fighterName"))
+                    fighterName = readLine()!
+                    
+                    isOk = false
+                } else {
+                    isOk = true
+                }
+            }
+        }
+        
+        print(Text.getText(key: "createFighter"))
         //choice the type
-        print(Text.getText()["fighterType"]!)
-        var choiceTypeOne = Int(readLine()!)
+        print(Text.getText(key: "fighterType"))
+        var choiceTypeOne = Int(readLine() ?? "")
         if choiceTypeOne == nil{
             //while the user don't write a word the question loop
             while choiceTypeOne == nil {
-                print(Text.getText()["fighterType"]!)
+                print(Text.getText(key: "fighterType"))
                 choiceTypeOne = Int(readLine()!)
             }
         }
         
-        //choice the fighter name
-        print(Text.getText()["fighterName"]!)
-        var fighterName = readLine()!
-        if fighterName == ""{
-            //while the user don't write a word the question loop
-            while fighterName == "" {
-                print(Text.getText()["fighterName"]!)
-                fighterName = readLine()!
-            }
-        }
-    
+
         //creation of the fighter
         var typeOne: Fighter
         switch choiceTypeOne {
@@ -138,10 +158,12 @@ class Fighter {
         let fighter = typeOne
         fighter.name = fighterName
         
+        
         return fighter
         
     }
 
 }
+
 
 

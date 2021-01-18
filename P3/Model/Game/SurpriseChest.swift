@@ -15,8 +15,8 @@ class SurpriseChest {
         
         // 30% appearances
         if rand > 0 && rand <= 30 {
-            print("\(Text.getText()["surpriseChest"]!)")
-            print("\(Text.getText()["yesNo"]!)")
+            print("\(Text.getText(key: "surpriseChest"))")
+            print("\(Text.getText(key: "yesNo"))")
             let answer = Int(String(readLine()!))
              
             if answer == 1 {
