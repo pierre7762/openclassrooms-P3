@@ -12,14 +12,14 @@ class Game: ToolsGame {
     static func startGame() {
         let tool = ToolsGame()
         var roundNumber = 0
-//        var listName =  ToolsGame().listPlayerName
+        var listName =  ToolsGame().listPlayerName
         var team1: Team
         var team2: Team
 
         //MARK: Prepare game
         print("\(Text.getText(key: "start"))")
 
-        team one
+//        team one
         print(Text.getText(key: "createTeam1"))
         let listTeam1 = updateFighterListNameControlled(listName: listName)
         for f in listTeam1 {
