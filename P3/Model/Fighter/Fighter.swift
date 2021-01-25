@@ -8,21 +8,19 @@
 import Foundation
 
 class Fighter {
-    var typeName: typeName
+    var typeName: TypeName
     var name: String
     var life: Int
     var lifeMax: Int
-    var weaponPower: weaponPower
+    var weaponPower: WeaponPower
     var dodge: Int
     var criticalHitPercentage: Int
     var minDamage: Int
     var damage: Int
     var maxDamage: Int
     var isDead = false
-    
-
-    
-    init(typeName: typeName, name: String, life: Int, lifeMax: Int, weaponPower: weaponPower, dodge: Int, criticalHitPercentage: Int, minDamage: Int, damage: Int, maxDamage: Int){
+     
+    init(typeName: TypeName, name: String, life: Int, lifeMax: Int, weaponPower: WeaponPower, dodge: Int, criticalHitPercentage: Int, minDamage: Int, damage: Int, maxDamage: Int) {
         self.typeName = typeName
         self.name = name
         self.life = life
@@ -33,21 +31,19 @@ class Fighter {
         self.minDamage = minDamage
         self.damage = damage
         self.maxDamage = maxDamage
-        
-        
     }
     
-    enum weaponPower: String {
+    enum WeaponPower: String {
         case low
         case normal
         case powerfull
     }
     
-    enum typeName {
+    enum TypeName {
         case TheBoxer, TheThinBlade, TheBully
     }
     
-    func maxAttackPotentielCal() -> Int{
+    func getMaxAttackPotentiel() -> Int {
         var maxAttackPotentiel = 0
         switch self.weaponPower {
         case .low:
@@ -60,9 +56,9 @@ class Fighter {
         return maxAttackPotentiel
     }
     
-    func damagePointAttack() -> Int{
+    func getDamagePointAttack() -> Int {
         // We seek the maximum attack with the weapon held
-        let maxAttackPotentiel = maxAttackPotentielCal()
+        let maxAttackPotentiel = getMaxAttackPotentiel()
         
         // Calculation of damage points in relation to the attacker's accuracy
         var damagepoints = maxAttackPotentiel
@@ -75,7 +71,7 @@ class Fighter {
         return damagepoints
     }
     
-    func isItToDodge() -> Bool{
+    func isItToDodge() -> Bool {
         let randomDodge = Int.random(in: 1..<100)
         if randomDodge > dodge {
             return false
@@ -83,12 +79,11 @@ class Fighter {
         else {
             return true
         }
-        
     }
     
-    func heal(target: Fighter){
+    private func heal(target: Fighter) {
         let care = Int(Double(target.life) * 0.2)
-        if ((target.life + care) <= lifeMax){
+        if ((target.life + care) <= lifeMax) {
             target.life += care
             print("\(target.name) recovers \(care) life points ! (\(target.life)/\(target.lifeMax))")
         } else {
@@ -98,69 +93,97 @@ class Fighter {
     }
     
     
-    static func createFighterChoice(listName: [String]) -> Fighter{
-        
+    static func createFighterChoice(listName: [String]) -> Fighter {
         //choice the fighter name
         print(Text.getText(key: "fighterName"))
         var fighterName = readLine()!
         
         // we cheak if the name is good
-        var isOk = false
-        
-        while isOk == false {
-            if fighterName == ""{
-                print("Please write the name you want to give to the fighter")
-                fighterName = readLine()!
+        var isCompleted = false
+        var containsAtLeastOneLettreLowercase = false
+        var isUnique = false
+        let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
+        var choiceType = 1
+
+        while isCompleted == false || containsAtLeastOneLettreLowercase == false || isUnique == false {
+            if fighterName == "" {
+                isCompleted = false
+                while fighterName == "" {
+                    print("Please write the name you want to give to the fighter")
+                    fighterName = readLine()!
+                }
+                
+                isCompleted = true
+
             } else {
-                isOk = true
+                isCompleted = true
             }
             
+            //name with at least one lowercase letter ?
+            containsAtLeastOneLettreLowercase = NSPredicate(format:"SELF MATCHES %@", regex).evaluate(with: fighterName)
+            if containsAtLeastOneLettreLowercase == false {
+                print(Text.getText(key: "leastOneLowercase"))
+                fighterName = readLine()!
+            } else {
+                containsAtLeastOneLettreLowercase = true
+            }
+
             //check if the name is already in use
-            for n in listName {
-                if n == fighterName {
-                    print("\(Text.getText(key: "existingName"))")
-                    print(Text.getText(key: "fighterName"))
-                    fighterName = readLine()!
-                    
-                    isOk = false
-                } else {
-                    isOk = true
+            if listName == [] {
+                isUnique = true
+            }
+            else {
+                for name in listName {
+                    if name.lowercased() == fighterName.lowercased() {
+                        isUnique = false
+                        print(Text.getText(key: "existingName"))
+                        fighterName = readLine()!
+                        
+                    } else {
+                        isUnique = true
+                    }
                 }
             }
         }
-        
+
         print(Text.getText(key: "createFighter"))
         //choice the type
         print(Text.getText(key: "fighterType"))
-        var choiceTypeOne = Int(readLine() ?? "")
-        if choiceTypeOne == nil{
-            //while the user don't write a word the question loop
-            while choiceTypeOne == nil {
-                print(Text.getText(key: "fighterType"))
-                choiceTypeOne = Int(readLine()!)
+        var userChoice = readLine() ?? ""
+        
+        if  userChoice.elementsEqual("1") || userChoice.elementsEqual("2") || userChoice.elementsEqual("3") {
+            choiceType = Int(userChoice)!
+        } else {
+            var typeOk = false
+            while typeOk == false {
+                if userChoice == "1" || userChoice == "2" || userChoice == "3" {
+                    typeOk = true
+                } else {
+                    print(Text.getText(key: "fighterType"))
+                    userChoice = readLine() ?? ""
+                    print("userCHoice = \(userChoice)")
+                }
             }
         }
-        
 
         //creation of the fighter
-        var typeOne: Fighter
-        switch choiceTypeOne {
-        case 1:
-            typeOne = TheBoxer(name: fighterName)
-        case 2:
-            typeOne = TheThinBlade(name: fighterName)
-        case 3:
-            typeOne = TheBully(name: fighterName)
-        default:
-            typeOne = TheBoxer(name: fighterName)
-        }
+        var type: Fighter
+        switch choiceType {
+            case 1:
+                type = TheBoxer(name: fighterName)
+            case 2:
+                type = TheThinBlade(name: fighterName)
+            case 3:
+                type = TheBully(name: fighterName)
+            default:
+                type = TheBoxer(name: fighterName)
+            }
         
-        let fighter = typeOne
+        let fighter = type
         fighter.name = fighterName
-        
-        
+
         return fighter
-        
+
     }
 
 }

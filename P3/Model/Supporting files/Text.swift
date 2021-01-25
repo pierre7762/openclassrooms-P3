@@ -23,13 +23,14 @@ class Text {
             "createTeam2": "Create the personnal team of player Two: \n",
             "teamName": "What is the name of your team?",
             "createFighter": "Let's create a fighter :",
-            "fighterType": "What type of fighter do you want? \n -For a boxer type 1 \n -For a thin blade type 2 \n -For a bully type 3",
-            "fighterName": "What is the name of this fighter ?",
+            "fighterType": "What type will your fighter be ? \n -For a boxer type 1 \n -For a thin blade type 2 \n -For a bully type 3",
+            "fighterName": "What is the name of this fighter ? ",
             "attack/care": "want to attack (tape 1) or heal (tape 2) ?",
             "surpriseChest": "******** A surprise chest appears, it contains a weapon more or less effective than yours and which will replace it!******** \n******** Do you want to try your luck ? ********",
             "yesNo": "Yes type 1 or No type 2",
-            "existingName": "The name already exists, please choose another one"
-        
+            "existingName": "The name already exists, please choose another one",
+            "leastOneLowercase": "Write a name with at least one lowercase letter",
+            "chooseFromProposals" : "Please choose only from the proposals given !"
         ]
         
         let requestedText = textList[key]!

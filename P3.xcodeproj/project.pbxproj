@@ -60,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				A71D2D6925ADB21A00211E61 /* P3 */,
+				A71D2D6A25ADB21A00211E61 /* main.swift */,
 				A71D2D6825ADB21A00211E61 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				A71D2D7225ADB81200211E61 /* Model */,
-				A71D2D7E25ADB8D600211E61 /* Controller */,
 			);
 			path = P3;
 			sourceTree = "<group>";
@@ -89,14 +89,6 @@
 				A71D2D9A25B2003500211E61 /* Supporting files */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		A71D2D7E25ADB8D600211E61 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A71D2D6A25ADB21A00211E61 /* main.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		A71D2D9925B2001600211E61 /* Fighter */ = {

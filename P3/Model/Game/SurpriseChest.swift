@@ -8,37 +8,36 @@
 import Foundation
 
 class SurpriseChest {
-    
-    
-    static func surpriseChest(fighter: Fighter){
+    static func getRandomSurpriseChest(fighter: Fighter) {
         let rand = Int.random(in: 1..<100)
+        let toolGame = ToolsGame()
         
         // 30% appearances
         if rand > 0 && rand <= 30 {
             print("\(Text.getText(key: "surpriseChest"))")
             print("\(Text.getText(key: "yesNo"))")
-            let answer = Int(String(readLine()!))
+            let answer = toolGame.getInputStringToInt(expectedChoice: ["1","2"])
              
             if answer == 1 {
                 let alea = Int.random(in: 1..<100)
                 
                 // no chance
-                if alea > 0 && alea <= 20{
+                if alea > 0 && alea <= 20 {
                     fighter.weaponPower = .low
                     print("******* 😢 No chance, your fighter now has the least powerful weapon ********")
-                    print("your weapon : \(fighter.weaponPower) | \(fighter.maxAttackPotentielCal()) \n")
+                    print("your weapon : \(fighter.weaponPower) | \(fighter.getMaxAttackPotentiel()) \n")
                 }
                 // normal
-                else if alea > 20 && alea <= 70{
+                else if alea > 20 && alea <= 70 {
                     fighter.weaponPower = .normal
                     print("******* 😅 your fighter now has the normal powerful weapon ********")
-                    print("your weapon : \(fighter.weaponPower) | \(fighter.maxAttackPotentielCal()) \n")
+                    print("your weapon : \(fighter.weaponPower) | \(fighter.getMaxAttackPotentiel()) \n")
                 }
-                // you are luchy !
+                // you are lucky !
                 else {
                     fighter.weaponPower = .powerfull
                     print("******* 😄 your fighter now has the most powerful weapon ********")
-                    print("your weapon : \(fighter.weaponPower) | \(fighter.maxAttackPotentielCal()) \n")
+                    print("your weapon : \(fighter.weaponPower) | \(fighter.getMaxAttackPotentiel()) \n")
                 }
             }
         }

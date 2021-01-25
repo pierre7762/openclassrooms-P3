@@ -7,4 +7,6 @@
 
 import Foundation
 
-Game.fightStart()
+Game.startGame()
+
+
