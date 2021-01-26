@@ -24,7 +24,7 @@ class TheBully: Fighter {
                    lifeMax: lifeMax,
                    weaponPower: .normal,
                    dodge: 10,
-                   criticalHitPercentage: 20,
+                   criticalHitPercentage: 30,
                    minDamage: 80,
                    damage: 100,
                    maxDamage: 150)

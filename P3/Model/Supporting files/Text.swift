@@ -17,7 +17,7 @@ class Text {
             "createTeam2": "\n\n Create the personnal team of player Two: \n",
             "teamName": "\n What is the name of your team?",
             "createFighter": "Let's create a fighter :",
-            "fighterType": "What type will your fighter be ? \n -For a boxer type 1 \n -For a thin blade type 2 \n -For a bully type 3",
+            "fighterType": "What type will your fighter be ? \n -For a boxer type 1 : life: 100 pts|dodge: 60%|damage: 60 pts|critical Hit %: 90% \n -For a thin blade type 2 : life: 80 pts|dodge: 40%|damage: 80pts|critical Hit %: 50% \n -For a bully type 3 : life: 150 pts|dodge: 10%|damage: 100pts|critical Hit %: 30%",
             "fighterName": "What is the name of this fighter ? ",
             "attack/care": "want to attack (tape 1) or heal (tape 2) ?",
             "surpriseChest": "******** A surprise chest appears, it contains a weapon more or less effective than yours and which will replace it!******** \n******** Do you want to try your luck ? ********",
