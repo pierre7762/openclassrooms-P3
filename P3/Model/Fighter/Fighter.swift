@@ -183,9 +183,7 @@ class Fighter {
         fighter.name = fighterName
 
         return fighter
-
     }
-
 }
 
 

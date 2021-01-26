@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Team{
+class Team {
     var teamName: String
     var fightersList: [Fighter]
     var fighterInLife = 3
@@ -32,9 +32,7 @@ class Team{
         var teamName = readLine()!
         var isOk = false
         var containsAtLeastOneLettreLowercase = false
-//        if teamName.elementsEqual("") {
-//
-//        }
+        
         if teamOneName.elementsEqual(".") {
             //while the user don't write a word the question loop
             while isOk == false {
@@ -73,18 +71,6 @@ class Team{
             }
         } else {
             if teamName.elementsEqual(teamOneName) {
-//                while teamName.elementsEqual("") && teamName.elementsEqual(teamOneName) {
-//                    if teamName.elementsEqual("") {
-//                        print(Text.getText(key: "teamName"))
-//                        teamName = readLine()!
-//                    }
-//                    else if teamName.elementsEqual(teamOneName) {
-//                        while teamName == teamOneName {
-//                            print(Text.getText(key: "existingName"))
-//                            teamName = readLine()!
-//                        }
-//                    }
-//                }
                 //while the user don't write a word the question loop
                 while isOk == false {
                     if teamName.elementsEqual("") {
