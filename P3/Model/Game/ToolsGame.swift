@@ -24,7 +24,7 @@ class ToolsGame {
             // selection of fighters
             fighterWhoAttacks = tool.selectedAttacker(attacker: attacker)
             // what the attacker do ?
-            action = tool.actionChoose()
+            action = tool.chooseAction()
             // attack
             if action == 1 {
                 SurpriseChest.getRandomSurpriseChest(fighter: fighterWhoAttacks)
@@ -99,7 +99,7 @@ class ToolsGame {
        return fighterWhoAttacks
    }
 
-    private func actionChoose() -> Int {
+    private func chooseAction() -> Int {
         var actionChoose: Int
         print("\(Text.getText(key: "attack/care"))")
         actionChoose = self.getInputStringToInt(expectedChoice: ["1","2"])

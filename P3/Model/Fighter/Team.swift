@@ -20,40 +20,140 @@ class Team{
     }
     
     static func createTeam(listFightersTeam: [Fighter], team1Name: String?) -> Team {
-        let team1Name = team1Name ?? ""
+        var teamOneName: String
+        if team1Name == nil {
+            teamOneName = "."
+        } else {
+            teamOneName = team1Name ?? "."
+        }
+       
         //choice the team name
         print(Text.getText(key: "teamName"))
         var teamName = readLine()!
-        if teamName.elementsEqual("") {
+        var isOk = false
+        var containsAtLeastOneLettreLowercase = false
+//        if teamName.elementsEqual("") {
+//
+//        }
+        if teamOneName.elementsEqual(".") {
             //while the user don't write a word the question loop
-            while teamName.elementsEqual("") && teamName.elementsEqual(team1Name) {
+            while isOk == false {
                 if teamName.elementsEqual("") {
                     print(Text.getText(key: "teamName"))
                     teamName = readLine()!
-                }
-                else if teamName.elementsEqual(team1Name) {
-                    while teamName.elementsEqual(team1Name) {
-                        print(Text.getText(key: "existingName"))
+                } else {
+                    let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
+                    //name with at least one lowercase letter ?
+                    containsAtLeastOneLettreLowercase = NSPredicate(format:"SELF MATCHES %@", regex).evaluate(with: teamName)
+                    if containsAtLeastOneLettreLowercase == false {
+                        print(Text.getText(key: "leastOneLowercase"))
                         teamName = readLine()!
+                    } else {
+                        isOk = true
                     }
+                    
+                   if teamName.elementsEqual(teamOneName) {
+                        while teamName.elementsEqual(teamOneName) {
+                            print(Text.getText(key: "existingName"))
+                            teamName = readLine()!
+                            isOk = false
+                        }
+                   } else {
+                    let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
+                    //name with at least one lowercase letter ?
+                    containsAtLeastOneLettreLowercase = NSPredicate(format:"SELF MATCHES %@", regex).evaluate(with: teamName)
+                    if containsAtLeastOneLettreLowercase == false {
+                        print(Text.getText(key: "leastOneLowercase"))
+                        teamName = readLine()!
+                    } else {
+                        isOk = true
+                    }
+                   }
                 }
             }
-        }
-       
-        if team1Name.elementsEqual("") {
-            
         } else {
-            if teamName.elementsEqual(team1Name) {
-                while teamName.elementsEqual("") && teamName.elementsEqual(team1Name) {
+            if teamName.elementsEqual(teamOneName) {
+//                while teamName.elementsEqual("") && teamName.elementsEqual(teamOneName) {
+//                    if teamName.elementsEqual("") {
+//                        print(Text.getText(key: "teamName"))
+//                        teamName = readLine()!
+//                    }
+//                    else if teamName.elementsEqual(teamOneName) {
+//                        while teamName == teamOneName {
+//                            print(Text.getText(key: "existingName"))
+//                            teamName = readLine()!
+//                        }
+//                    }
+//                }
+                //while the user don't write a word the question loop
+                while isOk == false {
                     if teamName.elementsEqual("") {
                         print(Text.getText(key: "teamName"))
                         teamName = readLine()!
-                    }
-                    else if teamName.elementsEqual(team1Name) {
-                        while teamName == team1Name {
-                            print(Text.getText(key: "existingName"))
+                    } else {
+                        let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
+                        //name with at least one lowercase letter ?
+                        containsAtLeastOneLettreLowercase = NSPredicate(format:"SELF MATCHES %@", regex).evaluate(with: teamName)
+                        if containsAtLeastOneLettreLowercase == false {
+                            print(Text.getText(key: "leastOneLowercase"))
                             teamName = readLine()!
+                        } else {
+                            isOk = true
                         }
+                        
+                       if teamName.elementsEqual(teamOneName) {
+                            while teamName.elementsEqual(teamOneName) {
+                                print(Text.getText(key: "existingName"))
+                                teamName = readLine()!
+                                isOk = false
+                            }
+                       } else {
+                        let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
+                        //name with at least one lowercase letter ?
+                        containsAtLeastOneLettreLowercase = NSPredicate(format:"SELF MATCHES %@", regex).evaluate(with: teamName)
+                        if containsAtLeastOneLettreLowercase == false {
+                            print(Text.getText(key: "leastOneLowercase"))
+                            teamName = readLine()!
+                        } else {
+                            isOk = true
+                        }
+                       }
+                    }
+                }
+            } else {
+                //while the user don't write a word the question loop
+                while isOk == false {
+                    if teamName.elementsEqual("") {
+                        print(Text.getText(key: "teamName"))
+                        teamName = readLine()!
+                    } else {
+                        let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
+                        //name with at least one lowercase letter ?
+                        containsAtLeastOneLettreLowercase = NSPredicate(format:"SELF MATCHES %@", regex).evaluate(with: teamName)
+                        if containsAtLeastOneLettreLowercase == false {
+                            print(Text.getText(key: "leastOneLowercase"))
+                            teamName = readLine()!
+                        } else {
+                            isOk = true
+                        }
+                        
+                        if teamName.lowercased().elementsEqual(teamOneName.lowercased()) {
+                            while teamName.lowercased().elementsEqual(teamOneName.lowercased()) {
+                                print(Text.getText(key: "existingName"))
+                                teamName = readLine()!
+                                isOk = false
+                            }
+                       } else {
+                        let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
+                        //name with at least one lowercase letter ?
+                        containsAtLeastOneLettreLowercase = NSPredicate(format:"SELF MATCHES %@", regex).evaluate(with: teamName)
+                        if containsAtLeastOneLettreLowercase == false {
+                            print(Text.getText(key: "leastOneLowercase"))
+                            teamName = readLine()!
+                        } else {
+                            isOk = true
+                        }
+                       }
                     }
                 }
             }
