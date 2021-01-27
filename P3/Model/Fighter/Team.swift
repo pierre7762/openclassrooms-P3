@@ -28,7 +28,7 @@ class Team {
         // check if teamName is ok
         let teamName = toolsTeam.checkIfTeamNameIsOk(teamOneName: teamOneName)
        
-        let team = Team(teamName: teamName, fightersList: listFightersTeam )
+        let team = Team(teamName: teamName, fightersList: listFightersTeam)
         
         return team
     }
