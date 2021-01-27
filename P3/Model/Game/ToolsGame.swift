@@ -7,18 +7,56 @@
 
 import Foundation
 
-
 class ToolsGame {
     var listPlayerName: [String] = []
     
-    //MARK: actions
+    func prepareGame(listName: inout [String]) -> [Team]{
+        var team1: Team
+        var team2: Team
+        //        team one
+        print(Text.getText(key: "createTeam1"))
+        let listTeam1 = updateFighterListNameControlled(listName: listName)
+        for f in listTeam1 {
+            listName.append(f.name)
+        }
+        team1 = Team.createTeam(listFightersTeam: listTeam1, team1Name: nil)
+
+        //team two
+        print(Text.getText(key: "createTeam2"))
+        let listTeam2 = updateFighterListNameControlled(listName: listName)
+        for f in listTeam1 {
+            listName.append(f.name)
+        }
+        team2 = Team.createTeam(listFightersTeam: listTeam2, team1Name: team1.teamName)
+        
+        let listTeam = [team1, team2]
+        
+        return listTeam
+    }
+    
+    private func updateFighterListNameControlled(listName: [String]) -> [Fighter] {
+        // we check if the name that the user wants to give it is not already assigned
+        var listName = listName
+        var listFightersTeam: [Fighter] = []
+        
+        for _ in 1 ..< 4 {
+            let fighter = Fighter.createFighterChoice(listName: listName)
+            listName.append(fighter.name)
+            print(listName)
+ 
+            listFightersTeam.append(fighter)
+        }
+        
+        return listFightersTeam
+    }
+    
+    //MARK: actions game
     func startRound(attacker: Team, defender: Team) {
         let tool = ToolsGame()
         //check if the team is in game
-        if attacker.fighterInLife > 0 {
+        if attacker.fightersList.count > 0 {
             var fighterWhoAttacks: Fighter
             var action: Int
-            var attack: Int
             var target: Fighter
             
             // selection of fighters
@@ -27,28 +65,7 @@ class ToolsGame {
             action = tool.chooseAction()
             // attack
             if action == 1 {
-                SurpriseChest.getRandomSurpriseChest(fighter: fighterWhoAttacks)
-                target = tool.selectedTarget(target: defender)
-                print("     -> \(fighterWhoAttacks.name) attack \(target.name)")
-                
-                if target.isItToDodge() == false {
-                    attack = fighterWhoAttacks.getDamagePointAttack()
-                    print("     -> \(target.name) subit \(attack) damage points")
-                    target.life -= attack
-                    
-                    if target.life > 0 {
-                        print("     -> \(target.name) has \(target.life) life points \n")
-                    }
-                    else {
-                        target.isDead = true
-                        target.life = 0
-                        defender.fighterInLife -= 1
-                        print("\n\(target.name) is dead \n")
-                    }
-                }
-                else {
-                    print("     -> \(target.name) dodged the attack \n")
-                }
+                attacked(fighterWhoAttacks: fighterWhoAttacks, defender: defender)
             }
             // heal
             if action == 2 {
@@ -105,6 +122,32 @@ class ToolsGame {
         actionChoose = self.getInputStringToInt(expectedChoice: ["1","2"])
 
         return actionChoose
+    }
+    
+    private func attacked(fighterWhoAttacks: Fighter, defender: Team) {
+        let tool = ToolsGame()
+        let attack: Int
+        SurpriseChest.getRandomSurpriseChest(fighter: fighterWhoAttacks)
+        let target = tool.selectedTarget(target: defender)
+        print("     -> \(fighterWhoAttacks.name) attack \(target.name)")
+        
+        if target.isItToDodge() == false {
+            attack = fighterWhoAttacks.getDamagePointAttack()
+            print("     -> \(target.name) subit \(attack) damage points")
+            target.life -= attack
+            
+            if target.life > 0 {
+                print("     -> \(target.name) has \(target.life) life points \n")
+            }
+            else {
+                target.isDead = true
+                target.life = 0
+                print("\n\(target.name) is dead \n")
+            }
+        }
+        else {
+            print("     -> \(target.name) dodged the attack \n")
+        }
     }
     
     private func selectedTarget(target:Team) -> Fighter {
@@ -175,6 +218,22 @@ class ToolsGame {
         return listAttackerInLife
     }
     
+    func knowIfStillFightersAlive(team: Team) -> Bool{
+        var numberFighterInLife = 0
+        for i in 0 ... team.fightersList.count - 1 {
+            let fighter = team.fightersList[i]
+            if fighter.isDead == false {
+                numberFighterInLife += 1
+            }
+        }
+        
+        if numberFighterInLife == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func getInputStringToInt(expectedChoice: [String]) -> Int {
         var inputString = readLine() ?? ""
         var inputInt = 0
@@ -201,4 +260,5 @@ class ToolsGame {
         }
         return inputInt
     }
+    
 }

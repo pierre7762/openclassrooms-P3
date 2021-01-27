@@ -7,6 +7,6 @@
 
 import Foundation
 
-Game.startGame()
+Game.game()
 
 
