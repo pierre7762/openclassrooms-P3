@@ -7,13 +7,12 @@
 
 import Foundation
 
-class Game: ToolsGame {
+class Game {
     //MARK: Game
     static func game() {
         let tool = ToolsGame()
         var roundNumber = 0
         var listName =  ToolsGame().listPlayerName
-        
 
         //MARK: Prepare game
         print("\(Text.getText(key: "start"))")
@@ -22,7 +21,6 @@ class Game: ToolsGame {
         let team1 = listTeam[0]
         let team2 = listTeam[1]
         
-      
         //MARK: Game
         while tool.knowIfStillFightersAlive(team: team1) == true && tool.knowIfStillFightersAlive(team: team2) == true {
             roundNumber += 1
@@ -35,7 +33,7 @@ class Game: ToolsGame {
                 tool.startRound(attacker: team2, defender: team1)
             }
         }
- 
+        
         // end of game
         if tool.knowIfStillFightersAlive(team: team1) == true && tool.knowIfStillFightersAlive(team: team2) == false {
             print("///////////////////////////////////////////////////")

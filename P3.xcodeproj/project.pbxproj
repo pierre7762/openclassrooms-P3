@@ -97,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				A71D2D8325ADF92600211E61 /* Team.swift */,
+				A79B4DBF25C189EE005E157F /* ToolsTeam.swift */,
 				A71D2D7325ADB83D00211E61 /* Fighter.swift */,
 				A71D2D7625ADB83D00211E61 /* TheBoxer.swift */,
 				A71D2D7725ADB83D00211E61 /* TheBully.swift */,
@@ -119,7 +120,6 @@
 				A71D2D8825AF71A600211E61 /* Game.swift */,
 				A71D2D9125B1C02E00211E61 /* SurpriseChest.swift */,
 				A7EBA3A525B59307006A94E3 /* ToolsGame.swift */,
-				A79B4DBF25C189EE005E157F /* ToolsTeam.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -151,7 +151,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					A71D2D6625ADB21A00211E61 = {
 						CreatedOnToolsVersion = 12.3;
@@ -316,6 +316,7 @@
 		A71D2D6F25ADB21A00211E61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GJVGX425T;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -327,6 +328,7 @@
 		A71D2D7025ADB21A00211E61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3GJVGX425T;
 				ENABLE_HARDENED_RUNTIME = YES;

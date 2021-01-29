@@ -85,10 +85,10 @@ class Fighter {
         let care = Int(Double(target.life) * 0.2)
         if ((target.life + care) <= lifeMax) {
             target.life += care
-            print("\(target.name) recovers \(care) life points ! (\(target.life)/\(target.lifeMax))")
+            print("\(target.name) recovers \(care) life points ! (\(target.life)/\(target.lifeMax)) /n")
         } else {
             life = lifeMax
-            print("\(target.name) is fully recovered ! (\(target.life)/\(target.lifeMax))")
+            print("\(target.name) is fully recovered ! (\(target.life)/\(target.lifeMax)) /n")
         }
     }
     

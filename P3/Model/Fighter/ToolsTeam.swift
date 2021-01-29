@@ -21,14 +21,14 @@ class ToolsTeam {
             // check if is not empty
             nameIsNotEmpty = checkTeamNameEmpty(teamName: &teamName)
             // check if the team name contain least one lowercase
-            containsAtLeastOneLettreLowercase = checkIfContainLeastOnelowercase(name: &teamName, containsAtLeastOneLettreLowercase: &containsAtLeastOneLettreLowercase)
+            containsAtLeastOneLettreLowercase = checkIfContainLeastOneLowercase(name: &teamName, containsAtLeastOneLettreLowercase: &containsAtLeastOneLettreLowercase)
             // check if teamName is not equal to teamoneName
             isNotEqualsToTeamOneName = checkIfNotEqualsToTeamOneName(teamName: &teamName, teamOneName: teamOneName)
         }
         return teamName
     }
     
-    private func checkIfContainLeastOnelowercase(name: inout String, containsAtLeastOneLettreLowercase: inout Bool) -> Bool{
+    private func checkIfContainLeastOneLowercase(name: inout String, containsAtLeastOneLettreLowercase: inout Bool) -> Bool{
         let regex = ".*[a-z]+.*" //name at least 1 Lowercase Alphabet
         //name with at least one lowercase letter ?
         while containsAtLeastOneLettreLowercase == false {
@@ -68,7 +68,7 @@ class ToolsTeam {
                 
                 while checkEmpty == false || checkLowercaser == false {
                     checkEmpty = checkTeamNameEmpty(teamName: &teamName)
-                    checkLowercaser = checkIfContainLeastOnelowercase(name: &teamName, containsAtLeastOneLettreLowercase: &containsAtLeastOneLettreLowercase)
+                    checkLowercaser = checkIfContainLeastOneLowercase(name: &teamName, containsAtLeastOneLettreLowercase: &containsAtLeastOneLettreLowercase)
                 }
             } else {
                 ok = true

@@ -13,7 +13,7 @@ class SurpriseChest {
         let toolGame = ToolsGame()
         
         // 30% appearances
-        if rand > 0 && rand <= 30 {
+        if rand > 0 && rand <= 50 {
             print("\(Text.getText(key: "surpriseChest"))")
             print("\(Text.getText(key: "yesNo"))")
             let answer = toolGame.getInputStringToInt(expectedChoice: ["1","2"])
@@ -28,7 +28,7 @@ class SurpriseChest {
                     print("your weapon : \(fighter.weaponPower) | \(fighter.getMaxAttackPotentiel()) \n")
                 }
                 // normal
-                else if alea > 20 && alea <= 70 {
+                else if alea > 20 && alea <= 60 {
                     fighter.weaponPower = .normal
                     print("******* 😅 your fighter now has the normal powerful weapon ********")
                     print("your weapon : \(fighter.weaponPower) | \(fighter.getMaxAttackPotentiel()) \n")

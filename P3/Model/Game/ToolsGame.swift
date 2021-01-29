@@ -10,7 +10,7 @@ import Foundation
 class ToolsGame {
     var listPlayerName: [String] = []
     
-    func prepareGame(listName: inout [String]) -> [Team]{
+    func prepareGame(listName: inout [String]) -> [Team]   {
         var team1: Team
         var team2: Team
         //        team one
